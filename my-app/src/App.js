@@ -1,9 +1,11 @@
 // import logo from './logo.svg';
 import './App.css';
-
+import { useState } from 'react';
+//useState _mode 값의 0번째 원소는 WELCOME 1번째 원소는 함수이다.
+//useState 는 배열을 리턴하고, 배열의 0번째 값은 상태의 값을 읽을때 사용한다.
+//1번째 데이터는 그 상태의 값을 변경할때 사용하는 함수이다. 
 
 function Header(props) {
-  console.log('porps', props, props.title);
 
   return <header>
     <h1><a href='/' onClick={function (event) {
@@ -39,25 +41,37 @@ function Article(props) {
     {props.body}
   </article>
 }
+
+
 function App() {
+  // const _mode = useState('WELCOME'); //mode 지역변수를 상태로 업그레이드하기 
+  // const mode = _mode[0];
+  // const setMode = _mode[1];
+  const [mode, setMode] = useState('WELCOME');
   const topics = [
     { id: 1, title: 'html', body: 'html is...' },
     { id: 2, title: 'css', body: 'css is...' },
     { id: 3, title: 'js', body: 'js is...' },
   ]
+  let content = null;
+  if (mode === 'WELCOME') {
+    content = <Article title="Welcome" body="Hello, WEB"></Article>
+  } else if (mode === 'READ') {
+    content = <Article title="READ" body="Hello, READ"></Article>
+  }
+
   return (
     <div>
-      <Header title="REACT" onChangeMod={function () {
-        alert('Header');
+      <Header title="WEB" onChangeMod={() => {
+        setMode('WELCOME');
       }}></Header>
 
 
       <Nav topics={topics} onChangeMod={(id) => {
-        alert(id);
+        setMode('READ');
       }}></Nav>
-      <Article title="Welcome" body="Hello, WEB"></Article>
-      <Article title="Hi" body="Hello, React"></Article>
-    </div>
+      {content}
+    </div >
   );
 }
 
