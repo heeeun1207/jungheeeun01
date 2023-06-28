@@ -23,7 +23,9 @@ function Nav(props) {
     lis.push(<li key={t.id}>
       <a id={t.id} href={'/read/' + t.id} onClick={(event) => {
         event.preventDefault();
-        props.onChangeMod(event.target.id);
+        //입력한 값은 숫자였지만, 태그의 속성으로 넘기면 "문자"가된다. 
+        //문자열 아이디가 되므로 문자를 숫자로 변환해줘야한다 Number()
+        props.onChangeMod(Number(event.target.id));
       }}>{t.title}</a>
     </li>)    //목록안에서 링크를 설치해서 그 링크가 이벤트를 호출할때 입력값을 준다. 
   }
@@ -47,6 +49,7 @@ function App() {
   // const _mode = useState('WELCOME'); //mode 지역변수를 상태로 업그레이드하기 
   // const mode = _mode[0];
   // const setMode = _mode[1];
+  const [id, setid] = useState(null);
   const [mode, setMode] = useState('WELCOME');
   const topics = [
     { id: 1, title: 'html', body: 'html is...' },
@@ -57,7 +60,16 @@ function App() {
   if (mode === 'WELCOME') {
     content = <Article title="Welcome" body="Hello, WEB"></Article>
   } else if (mode === 'READ') {
-    content = <Article title="READ" body="Hello, READ"></Article>
+    //id와 일치하는 원소를 찾기 
+    let title, body = null; // 타이틀과 바디 값 초기화
+    for (let i = 0; i < topics.length; i++) {
+      console.log(topics[i].id, id); //확인해보기 
+      if (topics[i].id === id) {
+        title = topics[i].title;
+        body = topics[i].body;
+      }
+    }
+    content = <Article title={title} body={body}></Article>
   }
 
   return (
@@ -67,8 +79,9 @@ function App() {
       }}></Header>
 
 
-      <Nav topics={topics} onChangeMod={(id) => {
+      <Nav topics={topics} onChangeMod={(_id) => {
         setMode('READ');
+        setid(_id);
       }}></Nav>
       {content}
     </div >
