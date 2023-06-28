@@ -18,7 +18,12 @@ function Nav(props) {
   const lis = []
   for (let i = 0; i < props.topics.length; i++) {
     let t = props.topics[i];
-    lis.push(<li key={t.id}><a href={'/read/' + t.id}>{t.title}</a></li>)
+    lis.push(<li key={t.id}>
+      <a id={t.id} href={'/read/' + t.id} onClick={(event) => {
+        event.preventDefault();
+        props.onChangeMod(event.target.id);
+      }}>{t.title}</a>
+    </li>)    //목록안에서 링크를 설치해서 그 링크가 이벤트를 호출할때 입력값을 준다. 
   }
   return <nav>
     <ol>
@@ -26,6 +31,8 @@ function Nav(props) {
     </ol>
   </nav>
 }
+
+
 function Article(props) {
   return <article>
     <h2>{props.title}</h2>
@@ -43,7 +50,11 @@ function App() {
       <Header title="REACT" onChangeMod={function () {
         alert('Header');
       }}></Header>
-      <Nav topics={topics}></Nav>
+
+
+      <Nav topics={topics} onChangeMod={(id) => {
+        alert(id);
+      }}></Nav>
       <Article title="Welcome" body="Hello, WEB"></Article>
       <Article title="Hi" body="Hello, React"></Article>
     </div>
