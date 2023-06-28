@@ -1,11 +1,19 @@
 // import logo from './logo.svg';
 import './App.css';
+
+
 function Header(props) {
   console.log('porps', props, props.title);
+
   return <header>
-    <h1><a href='/'>{props.title}</a></h1>
+    <h1><a href='/' onClick={function (event) {
+      event.preventDefault(); // a태그의 동작을 방지한다-> 리로드가 안됨.
+      props.onChangeMod(); //함수 호출 -> Header를 클릭했을때 이벤트를 적용한다.
+    }}>{props.title}</a></h1>
   </header>
 }
+
+
 function Nav(props) {
   const lis = []
   for (let i = 0; i < props.topics.length; i++) {
@@ -32,7 +40,9 @@ function App() {
   ]
   return (
     <div>
-      <Header title="REACT"></Header>
+      <Header title="REACT" onChangeMod={function () {
+        alert('Header');
+      }}></Header>
       <Nav topics={topics}></Nav>
       <Article title="Welcome" body="Hello, WEB"></Article>
       <Article title="Hi" body="Hello, React"></Article>
