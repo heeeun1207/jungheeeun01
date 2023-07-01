@@ -1,10 +1,9 @@
-// Header.js
 import React from "react";
 
 function Header() {
   return (
     <header>
-      <h1>컴포넌트만들기</h1>
+      <h1>버튼 map 사용해보기</h1>
     </header>
   );
 }

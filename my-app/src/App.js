@@ -2,6 +2,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/FirstPage";
+import Mainpage from "./components/mainPage";
 
 function App() {
   React.useEffect(() => {
@@ -13,6 +14,7 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<Header />} />
+          <Route path="/main" element={<Mainpage />} />
         </Routes>
       </div>
     </Router>
