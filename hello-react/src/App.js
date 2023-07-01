@@ -1,5 +1,13 @@
 import React from "react";
+//리액트에서 제공하는 기본적인 함수 
+import { useState } from "react";
 
+function Article(props) {
+  return <article>
+    <h2>{props.title}</h2>
+    {props.body}
+  </article>
+}
 
 function Header(props) {
   return <header>
@@ -33,21 +41,33 @@ function Nav(props) {
 }
 
 function App() {
+  // 상수 모드의 값이 무엇이냐에 따라서 본문의 값이 달라지게 하기 
+  // const _mode = useState('WELCOME');
+  // const mode = _mode[1];
+  // console.log('_mode', _mode);
+  const [mode, setMode] = useState('WELCOME');
   const topics = [
     { id: 1, title: '콜라', body: '콜라는...' },
     { id: 2, title: '사이다', body: '사이다는...' },
     { id: 3, title: '환타', body: '환타는...' },
   ]
+  let content = null;
+  if (mode === 'WELCOME') {
+    content = <Article title="Welcome" body="Hello, WEB"></Article>
+  } else if (mode === "READ") {
+    content = <Article title="Read" body="Read"></Article>
+  }
   return (
     <div>
       {/* header 컴포넌트에 이벤트 넣기 */}
       <Header title="안녕하세요 헤더입니다." onChangeMode={function () {
-        alert('헤더입니다.');
+        setMode("WELCOME");
       }}>
       </Header>
       <Nav topics={topics} onChangeMode={(id) => {
-        alert(id);
+        setMode("READ");
       }}></Nav>
+      {content}
     </div>
   );
 }
