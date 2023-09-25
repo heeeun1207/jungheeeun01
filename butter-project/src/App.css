@@ -1,0 +1,52 @@
+/* 배경 이미지 스타일 */
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+/* 로그인 버튼 스타일 */
+.login-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 60px;
+  margin-right: 41px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* 햄버거 아이콘 스타일 */
+.hamburger-icon {
+  width: 54px;
+  height: 37px;
+}
+
+/* 앱 제목 스타일 */
+.app-title {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  color: white;
+  margin-top: 44px;
+  margin-left: -100px;
+  font-size: 72px;
+}
+
+/* 로그인 제목 스타일 */
+.reservation{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  color: white;
+  cursor: pointer;
+  margin-top: 60px;
+  margin-left: 41px;
+}

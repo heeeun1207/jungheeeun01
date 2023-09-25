@@ -1,0 +1,51 @@
+.login-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(45, 45, 45, 1);
+  width: 659px;
+  height: 378px;
+  padding: 20px;
+  text-align: center;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-title {
+  color: white;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  width: 458px;
+  height: 71px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.sign-in-up {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin: 10px 0;
+}
+
+.separator {
+  margin: 0 10px;
+}
